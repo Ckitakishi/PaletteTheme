@@ -9,8 +9,8 @@ import Publish
 import Plot
 
 struct ItemTagList<Site: PaletteWebsite>: Component {
-    var item: Item<Site>
-    var site: Site
+    let item: Item<Site>
+    let site: Site
 
     var body: Component {
         List(item.tags) { tag in
@@ -18,5 +18,20 @@ struct ItemTagList<Site: PaletteWebsite>: Component {
                 .class("hashtag")
         }
         .class("flex flex-wrap gap-2")
+    }
+}
+
+struct ItemTagListWithDate<Site: PaletteWebsite>: Component {
+    let item: Item<Site>
+    let site: Site
+    
+    var body: Component {
+        Div {
+            Paragraph(item.date.formattedString)
+            Paragraph("|")
+                .class("mx-3 text-lg -mt-0.5")
+            ItemTagList(item: item, site: site)
+        }
+        .class("flex")
     }
 }

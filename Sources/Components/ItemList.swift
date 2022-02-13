@@ -20,16 +20,10 @@ struct ItemList<Site: PaletteWebsite>: Component {
                     .class("font-semibold")
                 Paragraph(item.description)
                     .class("text-zinc-500")
-                Div {
-                    Paragraph(item.date.formattedString)
-                    Paragraph("|")
-                        .class("mx-3 text-lg -mt-0.5")
-                    ItemTagList(item: item, site: site)
-                }
-                .class("flex text-zinc-600 mt-6")
+                ItemTagListWithDate(item: item, site: site)
+                    .class("text-zinc-600 mt-6")
             }
             .class("bg-zinc-100 rounded-lg my-6 p-6")
         }
-        
     }
 }

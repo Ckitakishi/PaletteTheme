@@ -14,38 +14,35 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                Div {
-                    Div {
-                        SiteHeader(
-                            context: context,
-                            selectedItem: context.site.pages.first { $0.isIndex }
-                        )
-                        Wrapper {
-                            H1(index.title)
-                            
-                            Div {
-                                Paragraph(context.site.description)
-                                SocialItemBar(context: context)
-                                    .class("mt-4")
-                            }
-                            .class("my-16")
-                            
-                            H2("Latest Writing")
-                                .class("my-4 font-bold")
-                            ItemList(
-                                items: Array(context.allItems(
-                                    sortedBy: \.date,
-                                    order: .descending
-                                ).prefix(6)),
-                                site: context.site
-                            )
-                            RoundButton(title: "Show more", url: "/posts")
+                CenterMDContainer {
+                    SiteHeader(
+                        context: context,
+                        selectedItem: context.site.pages.first { $0.isIndex }
+                    )
+                    Wrapper {
+                        Div {
+                            H2("About").class("top-h2")
+                            Paragraph(context.site.description)
+                            SocialItemBar(context: context)
+                                .class("mt-4")
                         }
-                        SiteFooter()
+                        .class("my-16")
+                        
+                        H2("Latest Writing").class("top-h2")
+                        ItemList(
+                            items: Array(context.allItems(
+                                sortedBy: \.date,
+                                order: .descending
+                            ).prefix(6)),
+                            site: context.site
+                        )
+                        Div {
+                            UnderlineButton(title: "Show more", url: "/posts").class("float-right")
+                        }
+                        .class("overflow-hidden")
                     }
-                    .class("max-w-screen-md")
+                    SiteFooter()
                 }
-                .class("flex justify-center mx-8")
             }
         )
     }
@@ -61,17 +58,19 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: section, on: context.site),
             .body {
-                SiteHeader(context: context, selectedItem: currentPage)
-                Wrapper {
-                    switch currentPage.listType {
-                    case .groupByYear:
-                        GroupByYearItemList(items: section.items, site: context.site)
-                    case .default:
-                        ItemList(items: section.items, site: context.site)
+                CenterMDContainer {
+                    SiteHeader(context: context, selectedItem: currentPage)
+                    Wrapper {
+                        switch currentPage.listType {
+                        case .groupByYear:
+                            GroupByYearItemList(items: section.items, site: context.site)
+                        case .default:
+                            ItemList(items: section.items, site: context.site)
+                        }
                     }
+                    .class("section-wrapper")
+                    SiteFooter()
                 }
-                .class("section-wrapper")
-                SiteFooter()
             }
         )
     }
@@ -83,18 +82,16 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .body(
                 .class("item-page"),
                 .components {
-                    SiteHeader(context: context, selectedItem: nil)
-                    Wrapper {
+                    CenterMDContainer {
+                        SiteHeader(context: context, selectedItem: nil)
+                        ItemTagListWithDate(item: item, site: context.site)
+                            .class("text-zinc-600 mt-6")
                         Article {
                             Div(item.content.body).class("content")
-                            Span("Tagged with: ")
-                            ItemTagList(item: item, site: context.site)
                         }
-                        .class("max-w-screen-md")
-                        .class("prose prose-zinc")
+                        .class("prose prose-zinc min-w-full")
+                        SiteFooter()
                     }
-                    .class("flex justify-center mx-8")
-                    SiteFooter()
                 }
             )
         )
@@ -105,9 +102,11 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(context: context, selectedItem: nil)
-                Wrapper(page.body)
-                SiteFooter()
+                CenterMDContainer {
+                    SiteHeader(context: context, selectedItem: nil)
+                    Wrapper(page.body)
+                    SiteFooter()
+                }
             }
         )
     }
@@ -117,20 +116,21 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(context: context, selectedItem: nil)
-                Wrapper {
-                    H1("Browse all tags")
-                    List(page.tags.sorted()) { tag in
-                        ListItem {
-                            Link(tag.string,
-                                 url: context.site.path(for: tag).absoluteString
-                            )
+                CenterMDContainer {
+                    SiteHeader(context: context, selectedItem: nil)
+                    Wrapper {
+                        List(page.tags.sorted()) { tag in
+                            ListItem {
+                                Link(tag.string,
+                                     url: context.site.path(for: tag).absoluteString
+                                )
+                            }
+                            .class("tag")
                         }
-                        .class("tag")
+                        .class("all-tags")
                     }
-                    .class("all-tags")
+                    SiteFooter()
                 }
-                SiteFooter()
             }
         )
     }
@@ -140,31 +140,38 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(
-                    context: context,
-                    selectedItem: context.site.pages.first { $0.title == page.tag.string }
-                )
-                Wrapper {
-                    H1 {
-                        Text("Tagged with ")
-                        Span(page.tag.string).class("tag")
+                CenterMDContainer {
+                    SiteHeader(
+                        context: context,
+                        selectedItem: context.site.pages.first { $0.title == page.tag.string }
+                    )
+                    Wrapper {
+                        Div {
+                            H2 {
+                                Text("Tagged with ")
+                                Span(page.tag.string).class("tag")
+                            }
+                            .class("top-h2")
+                            
+                            UnderlineButton(
+                                title: "Browse all tags",
+                                url: context.site.tagListPath.absoluteString
+                            )
+                            .class("absolute inset-y-0 right-0 mt-2")
+                        }
+                        .class("relative")
+
+                        ItemList(
+                            items: context.items(
+                                taggedWith: page.tag,
+                                sortedBy: \.date,
+                                order: .descending
+                            ),
+                            site: context.site
+                        )
                     }
-
-                    Link("Browse all tags",
-                        url: context.site.tagListPath.absoluteString
-                    )
-                    .class("browse-all")
-
-                    ItemList(
-                        items: context.items(
-                            taggedWith: page.tag,
-                            sortedBy: \.date,
-                            order: .descending
-                        ),
-                        site: context.site
-                    )
+                    SiteFooter()
                 }
-                SiteFooter()
             }
         )
     }

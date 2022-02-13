@@ -14,3 +14,14 @@ struct Wrapper: ComponentContainer {
         Div(content: content).class("wrapper")
     }
 }
+
+struct CenterMDContainer: ComponentContainer {
+    @ComponentBuilder var content: ContentProvider
+
+    var body: Component {
+        Div {
+            Div(content: content).class("max-w-screen-md w-full")
+        }
+        .class("flex justify-center")
+    }
+}
