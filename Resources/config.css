@@ -1,0 +1,97 @@
+@tailwind base;
+
+@layer base {
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
+
+    h4 {
+        @apply text-lg;
+    }
+
+    h5 {
+        @apply text-base;
+    }
+
+    h6 {
+        @apply text-sm;
+    }
+
+    a {
+        @apply text-blue-600 underline;
+    }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+/* Code: Syntax Highlight */
+
+pre {
+    margin-bottom: 1.5em;
+    background-color: #272b2f;
+    padding: 16px 0;
+    border-radius: 8px;
+}
+
+code {
+    background-color: #333;
+    opacity: 0.8;
+    font-family: Menlo, Monaco, monospace;
+    color: #a6b2c0;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre code {
+    background-color: #272b2f;
+    font-family: Menlo, Monaco, monospace;
+    display: block;
+    padding: 0 20px;
+    color: #a6b2c0;
+    line-height: 1.414em;
+    border-radius: 0;
+    overflow-x: auto;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+}
+
+pre code .keyword {
+    color: #c679dd;
+}
+
+pre code .type {
+    color: #5dd8ff;
+}
+
+pre code .call {
+    color: #61aeef;
+}
+
+pre code .property {
+    color: #df6a73;
+}
+
+pre code .number {
+    color: #d2945d;
+}
+
+pre code .string {
+    color: #90c378;
+}
+
+pre code .comment {
+    color: #59626f;
+}
+
+pre code .preprocessing {
+    color: #ae80ff;
+}
