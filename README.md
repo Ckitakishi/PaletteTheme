@@ -1,0 +1,2 @@
+# PaletteTheme
+A Publish theme.
