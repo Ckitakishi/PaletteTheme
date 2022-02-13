@@ -14,7 +14,8 @@ struct RoundButton: Component {
     var body: Component {
         Div {
             Link(title, url: url)
+                .class("float-right font-medium text-lg underline underline-offset-4")
         }
-        .class("round-btn-container")
+        .class("overflow-hidden")
     }
 }

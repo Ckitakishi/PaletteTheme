@@ -16,21 +16,17 @@ struct SiteHeader<Site: PaletteWebsite>: Component {
         Header {
             Wrapper {
                 Link(context.site.name, url: "/")
-                    .class("site-name")
-
-                if context.site.pages.count > 1 {
-                    navigation
+                    .class("font-extrabold text-3xl")
+                Navigation {
+                    List(context.site.pages) { navigationItem in
+                        Link(navigationItem.title, url: navigationItem.link)
+                            .class(navigationItem == selectedItem ? "selected" : "")
+                            .class("hover:underline underline-offset-4")
+                    }
+                    .class("flex flex-wrap gap-4")
                 }
             }
-        }
-    }
-
-    private var navigation: Component {
-        Navigation {
-            List(context.site.pages) { navigationItem in
-                Link(navigationItem.title, url: navigationItem.link)
-                    .class(navigationItem == selectedItem ? "selected" : "")
-            }
+            .class("my-16")
         }
     }
 }

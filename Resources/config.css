@@ -1,6 +1,14 @@
 @tailwind base;
 
 @layer base {
+    body {
+        @apply font-sans;
+    }
+
+    code {
+        @apply font-mono;
+    }
+    
     h1 {
         @apply text-3xl;
     }
@@ -24,14 +32,32 @@
     h6 {
         @apply text-sm;
     }
-
+    
     a {
-        @apply text-blue-600 underline;
+        @apply no-underline;
+    }
+    
+    .link-underline {
+        @apply underline underline-offset-4;
+    }
+    
+    .selected {
+        @apply link-underline;
     }
 }
 
 @tailwind components;
 @tailwind utilities;
+
+hr {
+    border: 0.5px;
+    border-style: dashed dotted;
+    opacity: 0.8;
+}
+
+.hashtag::before {
+    content: "#"
+}
 
 /* Code: Syntax Highlight */
 
@@ -45,7 +71,6 @@ pre {
 code {
     background-color: #333;
     opacity: 0.8;
-    font-family: Menlo, Monaco, monospace;
     color: #a6b2c0;
     padding: 2px 4px;
     border-radius: 4px;
@@ -53,7 +78,6 @@ code {
 
 pre code {
     background-color: #272b2f;
-    font-family: Menlo, Monaco, monospace;
     display: block;
     padding: 0 20px;
     color: #a6b2c0;

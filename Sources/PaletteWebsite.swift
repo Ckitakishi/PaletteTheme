@@ -13,6 +13,7 @@ public protocol PaletteWebsite: Website, PaletteCustomizable { }
 
 public protocol PaletteCustomizable {
     var pages: [PalettePage] { get }
+    var socialItems: [SocialItem] { get }
 }
 
 public struct PalettePage: Equatable {

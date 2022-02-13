@@ -15,7 +15,8 @@ struct ItemTagList<Site: PaletteWebsite>: Component {
     var body: Component {
         List(item.tags) { tag in
             Link(tag.string, url: site.path(for: tag).absoluteString)
+                .class("hashtag")
         }
-        .class("tag-list")
+        .class("flex flex-wrap gap-2")
     }
 }

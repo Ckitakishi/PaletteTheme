@@ -16,9 +16,12 @@ struct SiteFooter: Component {
                 Text(" 🎨 ")
                 Text("Powered by ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
+                    .class("link-underline")
                 Text(" & ")
                 Link("Palette", url: "https://github.com/Ckitakishi/PaletteTheme")
+                    .class("link-underline")
             }
         }
+        .class("flex justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
     }
 }

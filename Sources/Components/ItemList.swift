@@ -16,12 +16,20 @@ struct ItemList<Site: PaletteWebsite>: Component {
     var body: Component {
         List(items) { item in
             Article {
-                H1(Link(item.title, url: item.path.absoluteString))
-                ItemTagList(item: item, site: site)
+                H3(Link(item.title, url: item.path.absoluteString))
+                    .class("font-semibold")
                 Paragraph(item.description)
+                    .class("text-zinc-500")
+                Div {
+                    Paragraph(item.date.formattedString)
+                    Paragraph("|")
+                        .class("mx-3 text-lg -mt-0.5")
+                    ItemTagList(item: item, site: site)
+                }
+                .class("flex text-zinc-600 mt-6")
             }
-            .class("prose")
+            .class("bg-zinc-100 rounded-lg my-6 p-6")
         }
-        .class("item-list")
+        
     }
 }

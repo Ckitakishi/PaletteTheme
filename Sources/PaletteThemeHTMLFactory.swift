@@ -14,25 +14,38 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                SiteHeader(
-                    context: context,
-                    selectedItem: context.site.pages.first { $0.isIndex }
-                )
-                Wrapper {
-                    H1(index.title)
-                    Paragraph(context.site.description)
-                        .class("description")
-                    H2("Latest content")
-                    ItemList(
-                        items: Array(context.allItems(
-                            sortedBy: \.date,
-                            order: .descending
-                        ).prefix(6)),
-                        site: context.site
-                    )
-                    RoundButton(title: "Show more", url: "/posts")
+                Div {
+                    Div {
+                        SiteHeader(
+                            context: context,
+                            selectedItem: context.site.pages.first { $0.isIndex }
+                        )
+                        Wrapper {
+                            H1(index.title)
+                            
+                            Div {
+                                Paragraph(context.site.description)
+                                SocialItemBar(context: context)
+                                    .class("mt-4")
+                            }
+                            .class("my-16")
+                            
+                            H2("Latest Writing")
+                                .class("my-4 font-bold")
+                            ItemList(
+                                items: Array(context.allItems(
+                                    sortedBy: \.date,
+                                    order: .descending
+                                ).prefix(6)),
+                                site: context.site
+                            )
+                            RoundButton(title: "Show more", url: "/posts")
+                        }
+                        SiteFooter()
+                    }
+                    .class("max-w-screen-md")
                 }
-                SiteFooter()
+                .class("flex justify-center mx-8")
             }
         )
     }
@@ -77,8 +90,10 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)
                         }
-                        .class("prose")
+                        .class("max-w-screen-md")
+                        .class("prose prose-zinc")
                     }
+                    .class("flex justify-center mx-8")
                     SiteFooter()
                 }
             )
