@@ -20,8 +20,11 @@ struct CenterMDContainer: ComponentContainer {
 
     var body: Component {
         Div {
-            Div(content: content).class("max-w-screen-md w-full m-4")
+            Div(content: content)
+                .class("max-w-screen-md w-full m-4")
+                .class("flex flex-col") // To make the footer stick to bottom.
+            
         }
-        .class("flex justify-center")
+        .class("flex justify-center min-h-full")
     }
 }

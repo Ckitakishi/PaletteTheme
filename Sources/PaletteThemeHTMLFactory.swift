@@ -26,7 +26,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             SocialItemBar(context: context)
                                 .class("mt-4")
                         }
-                        .class("my-16")
+                        .class("mb-16")
                         
                         H2("Latest Writing").class("top-h2")
                         ItemList(
@@ -37,7 +37,8 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             site: context.site
                         )
                         Div {
-                            UnderlineButton(title: "Show more", url: "/posts").class("float-right")
+                            UnderlineButton(title: "Show more", url: "/posts")
+                                .class("float-right")
                         }
                         .class("overflow-hidden")
                     }

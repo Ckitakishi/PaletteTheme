@@ -21,8 +21,9 @@ struct SiteFooter: Component {
                 Link("Palette", url: "https://github.com/Ckitakishi/PaletteTheme")
                     .class("link-underline")
             }
-            .class("text-center")
+            .class("text-center mt-12")
         }
-        .class("flex absolute justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
+        .class("flex justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
+        .class("mt-auto") // To make the footer stick to bottom.
     }
 }

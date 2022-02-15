@@ -53,6 +53,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+    height: 100%;
+}
+
 hr {
     border: 0.5px;
     border-style: dashed dotted;

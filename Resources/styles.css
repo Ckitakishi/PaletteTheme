@@ -993,10 +993,6 @@ a {
   right: 0px;
 }
 
-.bottom-0 {
-  bottom: 0px;
-}
-
 .float-right {
   float: right;
 }
@@ -1045,12 +1041,28 @@ a {
   margin-bottom: 1rem;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .-mt-0\.5 {
   margin-top: -0.125rem;
 }
 
 .-mt-0 {
   margin-top: -0px;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
 }
 
 .flex {
@@ -1087,6 +1099,10 @@ a {
 
 .flex-none {
   flex: none;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .flex-wrap {
