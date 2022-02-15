@@ -29,15 +29,19 @@ struct GroupByYearItemList<Site: PaletteWebsite>: Component {
         List(sortedYears) { year in
             let sortedArticles = groupByYear[year]?.sorted(by: \.date, ascending: false) ?? []
             return Wrapper {
-                H2("\(year)")
+                H2("\(year)").class("top-h2")
                 List(sortedArticles) { item in
-                    Article {
-                        Span("\(item.date.formattedString)    ")
+                    Div {
+                        Span("\(item.date.formattedString)")
+                            .class("flex-none w-32 text-zinc-500")
                         Span(Link(item.title, url: item.path.absoluteString))
+                            .class("flex-3 link-underline")
                     }
+                    .class("flex my-2")
                 }
                 .class("group-item-list")
             }
         }
+        .class("space-y-16")
     }
 }

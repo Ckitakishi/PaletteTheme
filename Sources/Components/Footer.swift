@@ -21,7 +21,8 @@ struct SiteFooter: Component {
                 Link("Palette", url: "https://github.com/Ckitakishi/PaletteTheme")
                     .class("link-underline")
             }
+            .class("text-center")
         }
-        .class("flex justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
+        .class("flex absolute justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
     }
 }

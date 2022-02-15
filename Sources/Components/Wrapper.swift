@@ -20,7 +20,7 @@ struct CenterMDContainer: ComponentContainer {
 
     var body: Component {
         Div {
-            Div(content: content).class("max-w-screen-md w-full")
+            Div(content: content).class("max-w-screen-md w-full m-4")
         }
         .class("flex justify-center")
     }

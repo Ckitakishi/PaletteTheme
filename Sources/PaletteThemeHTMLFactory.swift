@@ -111,7 +111,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
         )
     }
 
-    func makeTagListHTML(for page: TagListPage,  context: PublishingContext<Site>) throws -> HTML? {
+    func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -121,13 +121,11 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                     Wrapper {
                         List(page.tags.sorted()) { tag in
                             ListItem {
-                                Link(tag.string,
-                                     url: context.site.path(for: tag).absoluteString
-                                )
+                                Link(tag.string, url: context.site.path(for: tag).absoluteString)
+                                    .class("hashtag link-underline")
                             }
-                            .class("tag")
                         }
-                        .class("all-tags")
+                        .class("flex flex-wrap gap-4")
                     }
                     SiteFooter()
                 }
@@ -149,7 +147,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                         Div {
                             H2 {
                                 Text("Tagged with ")
-                                Span(page.tag.string).class("tag")
+                                Span(page.tag.string).class("hashtag")
                             }
                             .class("top-h2")
                             
@@ -157,7 +155,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                                 title: "Browse all tags",
                                 url: context.site.tagListPath.absoluteString
                             )
-                            .class("absolute inset-y-0 right-0 mt-2")
+                            .class("absolute inset-y-0 right-0 mt-1")
                         }
                         .class("relative")
 

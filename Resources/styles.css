@@ -993,13 +993,26 @@ a {
   right: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .float-right {
   float: right;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .my-16 {
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .my-6 {
@@ -1020,8 +1033,8 @@ a {
   margin-top: 1.5rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .mt-16 {
@@ -1048,6 +1061,14 @@ a {
   height: 2rem;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
 .w-8 {
   width: 2rem;
 }
@@ -1064,6 +1085,10 @@ a {
   max-width: 768px;
 }
 
+.flex-none {
+  flex: none;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -1072,12 +1097,18 @@ a {
   justify-content: center;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
 
-.gap-4 {
-  gap: 1rem;
+.space-y-16 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(4rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden {
@@ -1095,6 +1126,10 @@ a {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-sm {
@@ -1145,6 +1180,10 @@ a {
 
 .underline-offset-4 {
   text-underline-offset: 4px;
+}
+
+html, body {
+  height: 100%;
 }
 
 hr {
