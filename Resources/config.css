@@ -69,61 +69,44 @@ hr {
 
 /* Code: Syntax Highlight */
 
-pre {
-    margin-bottom: 1.5em;
-    background-color: #272b2f;
-    padding: 16px 0;
-    border-radius: 8px;
-}
-
 code {
-    background-color: #333;
-    opacity: 0.8;
-    color: #a6b2c0;
+    background-color: #ededed;
     padding: 2px 4px;
     border-radius: 4px;
 }
 
-pre code {
-    background-color: #272b2f;
-    display: block;
-    padding: 0 20px;
-    color: #a6b2c0;
-    line-height: 1.414em;
-    border-radius: 0;
-    overflow-x: auto;
-    white-space: pre;
-    -webkit-overflow-scrolling: touch;
-}
-
 pre code .keyword {
-    color: #c679dd;
+    color: #f92672;
 }
 
 pre code .type {
-    color: #5dd8ff;
+    color: #a6e22e;
 }
 
 pre code .call {
-    color: #61aeef;
+    color: #fd971f;
 }
 
 pre code .property {
-    color: #df6a73;
+    color: #66d9ef;
 }
 
 pre code .number {
-    color: #d2945d;
+    color: #ae80ff;
 }
 
 pre code .string {
-    color: #90c378;
+    color: #e7dc74;
 }
 
 pre code .comment {
-    color: #59626f;
+    color: #75715e;
 }
 
 pre code .preprocessing {
     color: #ae80ff;
+}
+
+pre code .dotAccess {
+    color: #5dd8ff
 }

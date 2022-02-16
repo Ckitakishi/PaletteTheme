@@ -1,7 +1,23 @@
 module.exports = {
   content: ['../Sources/**/*.swift'],
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            code: {
+              fontWeight: '400',
+            },
+            'code::before': {
+              content: '',
+            },
+            'code::after': {
+              content: '',
+            },
+          },
+        },
+    },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
