@@ -1149,11 +1149,6 @@ a {
   border-radius: 0.5rem;
 }
 
-.bg-zinc-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 250 250 / var(--tw-bg-opacity));
-}
-
 .bg-zinc-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
@@ -1238,6 +1233,7 @@ a {
 
 html, body {
   height: 100%;
+  background-color: #fafafa;
 }
 
 a {
@@ -1262,6 +1258,7 @@ svg {
 
 code {
   background-color: #ededed;
+  /* bg-zinc-50 */
   padding: 2px 4px;
   border-radius: 4px;
 }
@@ -1306,6 +1303,12 @@ pre code .dotAccess {
   code {
     background-color: #3c3c3c;
   }
+
+  html, body {
+    height: 100%;
+    background-color: #18181b;
+    /* bg-zinc-900 */
+  }
 }
 
 .hover\:underline:hover {
@@ -1335,11 +1338,6 @@ pre code .dotAccess {
 
   .dark\:prose-invert :where(pre):not(:where([class~="not-prose"] *)) {
     background-color: #2a2a2a;
-  }
-
-  .dark\:bg-zinc-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
   }
 
   .dark\:bg-zinc-800 {

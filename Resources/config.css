@@ -55,6 +55,7 @@
 
 html, body {
     height: 100%;
+    background-color: #fafafa;
 }
 
 a {
@@ -78,7 +79,7 @@ svg {
 /* Code: Syntax Highlight */
 
 code {
-    background-color: #ededed;
+    background-color: #ededed; /* bg-zinc-50 */
     padding: 2px 4px;
     border-radius: 4px;
 }
@@ -122,5 +123,10 @@ pre code .dotAccess {
 @media (prefers-color-scheme: dark) {
     code {
         background-color: #3c3c3c;
+    }
+
+    html, body {
+        height: 100%;
+        background-color: #18181b; /* bg-zinc-900 */
     }
 }
