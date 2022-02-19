@@ -83,4 +83,3 @@ struct SocialItemBar<Site: PaletteWebsite>: Component {
         .class("flex")
     }
 }
-

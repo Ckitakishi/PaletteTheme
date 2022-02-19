@@ -529,6 +529,40 @@ a {
   --tw-backdrop-sepia:  ;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .prose {
   color: var(--tw-prose-body);
   max-width: 65ch;
@@ -638,7 +672,7 @@ a {
 .prose :where(h1):not(:where([class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: 800;
-  font-size: 2.25em;
+  font-size: 1.875rem;
   margin-top: 0;
   margin-bottom: 0.8888889em;
   line-height: 1.1111111;
@@ -651,7 +685,7 @@ a {
 .prose :where(h2):not(:where([class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   margin-top: 2em;
   margin-bottom: 1em;
   line-height: 1.3333333;
@@ -664,7 +698,7 @@ a {
 .prose :where(h3):not(:where([class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: 600;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   margin-top: 1.6em;
   margin-bottom: 0.6em;
   line-height: 1.6;
@@ -680,6 +714,7 @@ a {
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   line-height: 1.5;
+  font-size: 1.125rem;
 }
 
 .prose :where(h4 strong):not(:where([class~="not-prose"] *)) {
@@ -937,6 +972,16 @@ a {
   margin-bottom: 0;
 }
 
+.prose :where(h5):not(:where([class~="not-prose"] *)) {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.prose :where(h6):not(:where([class~="not-prose"] *)) {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 .prose-zinc {
   --tw-prose-body: #3f3f46;
   --tw-prose-headings: #18181b;
@@ -1021,6 +1066,26 @@ a {
   margin-bottom: 4rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1061,6 +1126,10 @@ a {
   margin-top: -0px;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .flex {
   display: flex;
 }
@@ -1093,8 +1162,16 @@ a {
   max-width: 768px;
 }
 
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
 .flex-none {
   flex: none;
+}
+
+.shrink {
+  flex-shrink: 1;
 }
 
 .flex-col {
@@ -1105,8 +1182,16 @@ a {
   flex-wrap: wrap;
 }
 
+.place-content-center {
+  place-content: center;
+}
+
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-4 {
@@ -1115,6 +1200,15 @@ a {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-x-16 {
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
 }
 
 .space-y-16 > :not([hidden]) ~ :not([hidden]) {
@@ -1144,6 +1238,10 @@ a {
   text-align: center;
 }
 
+.align-middle {
+  vertical-align: middle;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1152,6 +1250,11 @@ a {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-3xl {
@@ -1249,10 +1352,49 @@ pre code .preprocessing {
 }
 
 pre code .dotAccess {
-  color: #5dd8ff
+  color: #5dd8ff;
 }
 
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark\:prose-invert {
+    --tw-prose-body: var(--tw-prose-invert-body);
+    --tw-prose-headings: var(--tw-prose-invert-headings);
+    --tw-prose-lead: var(--tw-prose-invert-lead);
+    --tw-prose-links: var(--tw-prose-invert-links);
+    --tw-prose-bold: var(--tw-prose-invert-bold);
+    --tw-prose-counters: var(--tw-prose-invert-counters);
+    --tw-prose-bullets: var(--tw-prose-invert-bullets);
+    --tw-prose-hr: var(--tw-prose-invert-hr);
+    --tw-prose-quotes: var(--tw-prose-invert-quotes);
+    --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+    --tw-prose-captions: var(--tw-prose-invert-captions);
+    --tw-prose-code: var(--tw-prose-invert-code);
+    --tw-prose-pre-code: var(--tw-prose-invert-pre-code);
+    --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
+    --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+    --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:ml-auto {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:ml-auto {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:ml-auto {
+    margin-left: auto;
+  }
 }

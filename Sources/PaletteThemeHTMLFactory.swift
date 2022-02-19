@@ -14,12 +14,12 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                CenterMDContainer {
+                CenterContainer {
                     SiteHeader(
                         context: context,
                         selectedItem: context.site.pages.first { $0.isIndex }
                     )
-                    Wrapper {
+                    Div {
                         Div {
                             H2("About").class("top-h2")
                             Paragraph(context.site.description)
@@ -59,9 +59,9 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: section, on: context.site),
             .body {
-                CenterMDContainer {
+                CenterContainer {
                     SiteHeader(context: context, selectedItem: currentPage)
-                    Wrapper {
+                    Div {
                         switch currentPage.listType {
                         case .groupByYear:
                             GroupByYearItemList(items: section.items, site: context.site)
@@ -69,7 +69,6 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             ItemList(items: section.items, site: context.site)
                         }
                     }
-                    .class("section-wrapper")
                     SiteFooter()
                 }
             }
@@ -83,14 +82,15 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .body(
                 .class("item-page"),
                 .components {
-                    CenterMDContainer {
-                        SiteHeader(context: context, selectedItem: nil)
+                    FlatHeader(context: context, selectedItem: nil)
+                    CenterContainer {
                         ItemTagListWithDate(item: item, site: context.site)
                             .class("text-zinc-600 mt-6")
                         Article {
                             Div(item.content.body).class("content")
                         }
                         .class("prose prose-zinc min-w-full")
+//                        .class("dark:prose-invert")
                         SiteFooter()
                     }
                 }
@@ -103,9 +103,9 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                CenterMDContainer {
-                    SiteHeader(context: context, selectedItem: nil)
-                    Wrapper(page.body)
+                FlatHeader(context: context, selectedItem: nil)
+                CenterContainer {
+                    Div(page.body)
                     SiteFooter()
                 }
             }
@@ -117,9 +117,9 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                CenterMDContainer {
+                CenterContainer {
                     SiteHeader(context: context, selectedItem: nil)
-                    Wrapper {
+                    Div {
                         List(page.tags.sorted()) { tag in
                             ListItem {
                                 Link(tag.string, url: context.site.path(for: tag).absoluteString)
@@ -139,12 +139,12 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                CenterMDContainer {
+                CenterContainer {
                     SiteHeader(
                         context: context,
                         selectedItem: context.site.pages.first { $0.title == page.tag.string }
                     )
-                    Wrapper {
+                    Div {
                         Div {
                             H2 {
                                 Text("Tagged with ")
