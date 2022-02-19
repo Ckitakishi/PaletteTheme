@@ -153,20 +153,11 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                         selectedItem: context.site.pages.first { $0.title == page.tag.string }
                     )
                     Div {
-                        Div {
-                            H2 {
-                                Text("Tagged with ")
-                                Span(page.tag.string).class("hashtag")
-                            }
-                            .class("top-h2")
-                            
-                            UnderlineButton(
-                                title: "Browse all tags",
-                                url: context.site.tagListPath.absoluteString
-                            )
-                            .class("absolute inset-y-0 right-0 mt-1")
+                        H2 {
+                            Text("Tagged with ")
+                            Span(page.tag.string).class("hashtag")
                         }
-                        .class("relative")
+                        .class("top-h2")
 
                         ItemList(
                             items: context.items(
@@ -176,6 +167,14 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             ),
                             site: context.site
                         )
+                        
+                        Div {
+                            UnderlineButton(
+                                title: "Browse all tags",
+                                url: context.site.tagListPath.absoluteString
+                            ).class("float-right")
+                        }
+                        .class("overflow-hidden")
                     }
                     SiteFooter()
                 }

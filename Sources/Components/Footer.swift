@@ -13,7 +13,9 @@ struct SiteFooter: Component {
         Footer {
             Paragraph {
                 Text("Copyright © 2014-\(Calendar.current.component(.year, from: Date())) Ckitakishi")
-                Text(" 🎨 ")
+            }
+            .class("text-center mt-16")
+            Paragraph {
                 Text("Powered by ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
                     .class("link-underline")
@@ -21,10 +23,10 @@ struct SiteFooter: Component {
                 Link("Palette", url: "https://github.com/Ckitakishi/PaletteTheme")
                     .class("link-underline")
             }
-            .class("text-center mt-12")
+            .class("text-center mt-1")
         }
-        .class("flex justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
+        .class("flex flex-col mb-4 text-sm font-light")
         .class("mt-auto") // To make the footer stick to bottom.
-        .class("bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50")
+        .class("bg-zinc-50 text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400")
     }
 }

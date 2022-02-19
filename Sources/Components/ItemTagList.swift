@@ -28,6 +28,7 @@ struct ItemTagListWithDate<Site: PaletteWebsite>: Component {
     var body: Component {
         Div {
             Paragraph(item.date.formattedString)
+                .class("flex shrink-0")
             Paragraph("|")
                 .class("mx-3 text-lg -mt-0.5")
             ItemTagList(item: item, site: site)
