@@ -720,7 +720,7 @@ a {
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
   color: var(--tw-prose-pre-code);
-  background-color: var(--tw-prose-pre-bg);
+  background-color: #161613;
   overflow-x: auto;
   font-weight: 400;
   font-size: 0.875em;
@@ -1051,10 +1051,6 @@ a {
   margin-bottom: 4rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1073,6 +1069,10 @@ a {
 
 .mt-auto {
   margin-top: auto;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .-mt-0\.5 {
@@ -1166,13 +1166,27 @@ a {
   border-radius: 0.5rem;
 }
 
+.bg-zinc-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 250 250 / var(--tw-bg-opacity));
+}
+
 .bg-zinc-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
 .p-6 {
   padding: 1.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .text-center {
@@ -1215,14 +1229,19 @@ a {
   font-weight: 500;
 }
 
-.text-zinc-600 {
+.text-zinc-900 {
   --tw-text-opacity: 1;
-  color: rgb(82 82 91 / var(--tw-text-opacity));
+  color: rgb(24 24 27 / var(--tw-text-opacity));
 }
 
 .text-zinc-500 {
   --tw-text-opacity: 1;
   color: rgb(113 113 122 / var(--tw-text-opacity));
+}
+
+.text-zinc-600 {
+  --tw-text-opacity: 1;
+  color: rgb(82 82 91 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1238,10 +1257,18 @@ html, body {
   height: 100%;
 }
 
+a {
+  word-break: break-all;
+}
+
 hr {
   border: 0.5px;
   border-style: dashed dotted;
   opacity: 0.8;
+}
+
+svg {
+  fill: currentColor;
 }
 
 .hashtag::before {
@@ -1292,6 +1319,12 @@ pre code .dotAccess {
   color: #5dd8ff;
 }
 
+@media (prefers-color-scheme: dark) {
+  code {
+    background-color: #3c3c3c;
+  }
+}
+
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1315,5 +1348,29 @@ pre code .dotAccess {
     --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
     --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
     --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+  }
+
+  .dark\:prose-invert :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: #2a2a2a;
+  }
+
+  .dark\:bg-zinc-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-zinc-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+  }
+
+  .dark\:text-zinc-50 {
+    --tw-text-opacity: 1;
+    color: rgb(250 250 250 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-zinc-400 {
+    --tw-text-opacity: 1;
+    color: rgb(161 161 170 / var(--tw-text-opacity));
   }
 }

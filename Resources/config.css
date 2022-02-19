@@ -57,10 +57,18 @@ html, body {
     height: 100%;
 }
 
+a {
+    word-break: break-all;
+}
+
 hr {
     border: 0.5px;
     border-style: dashed dotted;
     opacity: 0.8;
+}
+
+svg {
+    fill: currentColor;
 }
 
 .hashtag::before {
@@ -109,4 +117,10 @@ pre code .preprocessing {
 
 pre code .dotAccess {
     color: #5dd8ff;
+}
+
+@media (prefers-color-scheme: dark) {
+    code {
+        background-color: #3c3c3c;
+    }
 }

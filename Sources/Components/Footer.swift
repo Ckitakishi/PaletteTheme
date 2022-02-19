@@ -25,5 +25,6 @@ struct SiteFooter: Component {
         }
         .class("flex justify-center mt-16 mb-4 text-zinc-500 text-sm font-light")
         .class("mt-auto") // To make the footer stick to bottom.
+        .class("bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50")
     }
 }

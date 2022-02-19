@@ -5,22 +5,6 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            a: {
-              'text-underline-offset': '4px', 
-            },
-            code: {
-              fontWeight: '400',
-            },
-            'code::before': {
-              content: '',
-            },
-            'code::after': {
-              content: '',
-            },
-          },
-        },
-        base: {
-          css: {
             h1: {
               fontSize: '1.875rem',
             },
@@ -40,6 +24,28 @@ module.exports = {
             h6: {
               fontSize: '0.875rem',
               fontWeight: '600',
+            },
+            a: {
+              'text-underline-offset': '4px', 
+            },
+            pre: {
+              backgroundColor: '#161613',
+            },
+            code: {
+              fontWeight: '400',
+            },
+            'code::before': {
+              content: '',
+            },
+            'code::after': {
+              content: '',
+            },
+          },
+        },
+        invert: {
+          css: {
+            pre: {
+              backgroundColor: '#2a2a2a',
             },
           },
         },

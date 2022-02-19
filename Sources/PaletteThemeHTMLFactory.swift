@@ -23,10 +23,13 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                         Div {
                             H2("About")
                                 .class("top-h2")
+                            
                             Article {
                                 Div(Markdown(context.site.description)).class("content")
                             }
                             .class("prose prose-zinc min-w-full")
+                            .class("dark:prose-invert")
+                            
                             SocialItemBar(context: context)
                                 .class("mt-4")
                         }
@@ -89,14 +92,14 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                     FlatHeader(context: context, selectedItem: nil)
                     CenterContainer {
                         ItemTagListWithDate(item: item, site: context.site)
-                            .class("text-zinc-600 mt-6")
                         Article {
                             Div(item.content.body).class("content")
                         }
                         .class("prose prose-zinc min-w-full")
-//                        .class("dark:prose-invert")
+                        .class("dark:prose-invert")
                         SiteFooter()
                     }
+                    .class("py-4")
                 }
             )
         )
@@ -112,6 +115,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                     Div(page.body)
                     SiteFooter()
                 }
+                .class("py-4")
             }
         )
     }

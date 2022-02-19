@@ -28,6 +28,7 @@ struct SiteHeader<Site: PaletteWebsite>: Component {
             }
             .class("my-16")
         }
+        .class("bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50")
     }
 }
 
@@ -52,6 +53,7 @@ struct FlatHeader<Site: PaletteWebsite>: Component {
             }
             .class("flex flex-wrap justify-between my-4 gap-x-16 max-w-screen-lg w-full")
         }
-        .class("flex justify-center m-4")
+        .class("flex justify-center p-4")
+        .class("bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50")
     }
 }

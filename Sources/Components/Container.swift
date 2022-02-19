@@ -18,5 +18,6 @@ struct CenterContainer: ComponentContainer {
             
         }
         .class("flex justify-center min-h-full")
+        .class("bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50")
     }
 }
