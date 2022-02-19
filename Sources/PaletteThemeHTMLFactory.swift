@@ -21,8 +21,12 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                     )
                     Div {
                         Div {
-                            H2("About").class("top-h2")
-                            Paragraph(context.site.description)
+                            H2("About")
+                                .class("top-h2")
+                            Article {
+                                Div(Markdown(context.site.description)).class("content")
+                            }
+                            .class("prose prose-zinc min-w-full")
                             SocialItemBar(context: context)
                                 .class("mt-4")
                         }

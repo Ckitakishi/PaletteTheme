@@ -5,6 +5,9 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            a: {
+              'text-underline-offset': '4px', 
+            },
             code: {
               fontWeight: '400',
             },
