@@ -7,14 +7,18 @@
 
 import Foundation
 import Plot
+import Publish
 
-struct SiteFooter: Component {
+struct SiteFooter<Site: PaletteWebsite>: Component {
+    let context: PublishingContext<Site>
+    
     var body: Component {
         Footer {
             Paragraph {
-                Text("Copyright © 2014-\(Calendar.current.component(.year, from: Date())) Ckitakishi")
+                Text("Copyright © 2014-\(Calendar.current.component(.year, from: Date())) \(context.site.copyright)")
             }
             .class("text-center mt-16")
+            
             Paragraph {
                 Text("Powered by ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
@@ -24,8 +28,11 @@ struct SiteFooter: Component {
                     .class("link-underline")
             }
             .class("text-center mt-1")
+            
+            RibbonView()
+                .class("mt-6")
         }
-        .class("flex flex-col mb-4 text-sm font-light")
+        .class("flex flex-col text-sm font-light")
         .class("mt-auto") // To make the footer stick to bottom.
         .class("text-zinc-500 dark:text-zinc-400")
     }

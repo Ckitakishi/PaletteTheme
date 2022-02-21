@@ -14,42 +14,45 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                CenterContainer {
-                    SiteHeader(
-                        context: context,
-                        selectedItem: context.site.pages.first { $0.isIndex }
-                    )
-                    Div {
-                        Div {
-                            H2("About")
-                                .class("top-h2")
-                            
-                            Article {
-                                Div(Markdown(context.site.description)).class("content")
-                            }
-                            .class("prose prose-zinc min-w-full")
-                            .class("dark:prose-invert")
-                            
-                            SocialItemBar(context: context)
-                                .class("mt-4")
-                        }
-                        .class("mb-16")
-                        
-                        H2("Latest Writing").class("top-h2")
-                        ItemList(
-                            items: Array(context.allItems(
-                                sortedBy: \.date,
-                                order: .descending
-                            ).prefix(6)),
-                            site: context.site
+                PageContainer {
+                    RibbonView()
+                    CenterContainer {
+                        SiteHeader(
+                            context: context,
+                            selectedItem: context.site.pages.first { $0.isIndex }
                         )
                         Div {
-                            UnderlineButton(title: "Show more", url: "/posts")
-                                .class("float-right")
+                            // Profile
+                            Div {
+                                H2("About")
+                                    .class("top-h2")
+                                Article {
+                                    Div(Markdown(context.site.description)).class("content")
+                                }
+                                .class("prose prose-zinc min-w-full")
+                                .class("dark:prose-invert")
+                                SocialItemBar(context: context)
+                                    .class("mt-4")
+                            }
+                            .class("mb-16")
+                            
+                            // Latest Writing
+                            H2("Latest Writing").class("top-h2")
+                            ItemList(
+                                items: Array(context.allItems(
+                                    sortedBy: \.date,
+                                    order: .descending
+                                ).prefix(6)),
+                                site: context.site
+                            )
+                            Div {
+                                UnderlineButton(title: "Show more", url: "/posts")
+                                    .class("float-right")
+                            }
+                            .class("overflow-hidden")
                         }
-                        .class("overflow-hidden")
                     }
-                    SiteFooter()
+                    SiteFooter(context: context)
                 }
             }
         )
@@ -66,17 +69,20 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: section, on: context.site),
             .body {
-                CenterContainer {
-                    SiteHeader(context: context, selectedItem: currentPage)
-                    Div {
-                        switch currentPage.listType {
-                        case .groupByYear:
-                            GroupByYearItemList(items: section.items, site: context.site)
-                        case .default:
-                            ItemList(items: section.items, site: context.site)
+                PageContainer {
+                    RibbonView()
+                    CenterContainer {
+                        SiteHeader(context: context, selectedItem: currentPage)
+                        Div {
+                            switch currentPage.listType {
+                            case .groupByYear:
+                                GroupByYearItemList(items: section.items, site: context.site)
+                            case .default:
+                                ItemList(items: section.items, site: context.site)
+                            }
                         }
                     }
-                    SiteFooter()
+                    SiteFooter(context: context)
                 }
             }
         )
@@ -89,17 +95,21 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .body(
                 .class("item-page"),
                 .components {
-                    FlatHeader(context: context, selectedItem: nil)
-                    CenterContainer {
-                        ItemTagListWithDate(item: item, site: context.site)
-                        Article {
-                            Div(item.content.body).class("content")
+                    PageContainer {
+                        RibbonView()
+                        FlatHeader(context: context, selectedItem: nil)
+                        CenterContainer {
+                            ItemTagListWithDate(item: item, site: context.site)
+                                .class("mb-1")
+                            Article {
+                                Div(item.content.body).class("content")
+                            }
+                            .class("prose prose-zinc min-w-full")
+                            .class("dark:prose-invert")
                         }
-                        .class("prose prose-zinc min-w-full")
-                        .class("dark:prose-invert")
-                        SiteFooter()
+                        .class("mx-4")
+                        SiteFooter(context: context)
                     }
-                    .class("py-4")
                 }
             )
         )
@@ -110,12 +120,15 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                FlatHeader(context: context, selectedItem: nil)
-                CenterContainer {
-                    Div(page.body)
-                    SiteFooter()
+                PageContainer {
+                    RibbonView()
+                    FlatHeader(context: context, selectedItem: nil)
+                    CenterContainer {
+                        Div(page.body)
+                    }
+                    .class("mx-4")
+                    SiteFooter(context: context)
                 }
-                .class("py-4")
             }
         )
     }
@@ -125,18 +138,21 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                CenterContainer {
-                    SiteHeader(context: context, selectedItem: nil)
-                    Div {
-                        List(page.tags.sorted()) { tag in
-                            ListItem {
-                                Link(tag.string, url: context.site.path(for: tag).absoluteString)
-                                    .class("hashtag link-underline")
+                PageContainer {
+                    RibbonView()
+                    CenterContainer {
+                        SiteHeader(context: context, selectedItem: nil)
+                        Div {
+                            List(page.tags.sorted()) { tag in
+                                ListItem {
+                                    Link(tag.string, url: context.site.path(for: tag).absoluteString)
+                                        .class("hashtag link-underline")
+                                }
                             }
+                            .class("flex flex-wrap gap-4")
                         }
-                        .class("flex flex-wrap gap-4")
                     }
-                    SiteFooter()
+                    SiteFooter(context: context)
                 }
             }
         )
@@ -147,36 +163,39 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                CenterContainer {
-                    SiteHeader(
-                        context: context,
-                        selectedItem: context.site.pages.first { $0.title == page.tag.string }
-                    )
-                    Div {
-                        H2 {
-                            Text("Tagged with ")
-                            Span(page.tag.string).class("hashtag")
-                        }
-                        .class("top-h2")
-
-                        ItemList(
-                            items: context.items(
-                                taggedWith: page.tag,
-                                sortedBy: \.date,
-                                order: .descending
-                            ),
-                            site: context.site
+                PageContainer {
+                    RibbonView()
+                    CenterContainer {
+                        SiteHeader(
+                            context: context,
+                            selectedItem: context.site.pages.first { $0.title == page.tag.string }
                         )
-                        
                         Div {
-                            UnderlineButton(
-                                title: "Browse all tags",
-                                url: context.site.tagListPath.absoluteString
-                            ).class("float-right")
+                            H2 {
+                                Text("Tagged with ")
+                                Span(page.tag.string).class("hashtag")
+                            }
+                            .class("top-h2")
+
+                            ItemList(
+                                items: context.items(
+                                    taggedWith: page.tag,
+                                    sortedBy: \.date,
+                                    order: .descending
+                                ),
+                                site: context.site
+                            )
+                            
+                            Div {
+                                UnderlineButton(
+                                    title: "Browse all tags",
+                                    url: context.site.tagListPath.absoluteString
+                                ).class("float-right")
+                            }
+                            .class("overflow-hidden")
                         }
-                        .class("overflow-hidden")
                     }
-                    SiteFooter()
+                    SiteFooter(context: context)
                 }
             }
         )

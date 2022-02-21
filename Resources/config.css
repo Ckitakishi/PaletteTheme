@@ -58,9 +58,9 @@ html, body {
     background-color: #fafafa;
 }
 
-a {
+a, p {
     word-break: break-all;
-}
+} 
 
 hr {
     border: 0.5px;
@@ -101,11 +101,11 @@ pre code .property {
 }
 
 pre code .number {
-    color: #ae80ff;
+    color: #ae81ff;
 }
 
 pre code .string {
-    color: #e7dc74;
+    color: #e6db74;
 }
 
 pre code .comment {
@@ -113,7 +113,7 @@ pre code .comment {
 }
 
 pre code .preprocessing {
-    color: #ae80ff;
+    color: #ae81ff;
 }
 
 pre code .dotAccess {

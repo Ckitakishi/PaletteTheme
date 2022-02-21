@@ -2,6 +2,9 @@ module.exports = {
   content: ['../Sources/**/*.swift'],
   theme: {
     extend: {
+      screens: {
+        'ssm': '386px',
+      },
       typography: {
         DEFAULT: {
           css: {

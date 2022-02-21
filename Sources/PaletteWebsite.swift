@@ -5,27 +5,46 @@
 //  Created by Yuhan Chen on 2022/02/12.
 //
 
-import Foundation
 import Publish
 import Plot
 
-public protocol PaletteWebsite: Website, PaletteCustomizable { }
+/// Conform to these protocols makes you can customize many additional configurations.
+public typealias PaletteWebsite = Website & PaletteCustomizable
 
+/// Protocol that defines all customisable configurations for Palette theme.
 public protocol PaletteCustomizable {
+    /// The `PalettePage`s that the website will include.
     var pages: [PalettePage] { get }
+    /// The social items will be shown on website.
     var socialItems: [SocialItem] { get }
+    /// The path to profile icon.
+    var profileIconPath: URLRepresentable? { get }
+    /// The copyright of website.
+    var copyright: String { get }
 }
 
+public extension PaletteCustomizable {
+    var profileIconPath: URLRepresentable? { nil }
+    var socialItems: [SocialItem] { [] }
+}
+
+/// Type used to represent a Palette section.
+/// Some configurations of page can be defined within this type.
 public struct PalettePage: Equatable {
     public enum ItemListType {
         case `default`
         case groupByYear
     }
     
+    /// An unique id of section.
     let id: String
+    /// The text for display on the navigation bar.
     let title: String
+    /// The URL to each secion's page.
     let link: URLRepresentable
-    let isIndex: Bool // Represents whether an item is for home page, default is `false`
+    /// Represents whether an item is for home page, default is `false`
+    let isIndex: Bool
+    /// A type used to specific the style of list.
     let listType: ItemListType
     
     public init(

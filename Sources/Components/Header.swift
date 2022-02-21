@@ -13,20 +13,29 @@ struct SiteHeader<Site: PaletteWebsite>: Component {
     var selectedItem: PalettePage?
 
     var body: Component {
-        Header {
+        let profilePath = context.site.profileIconPath
+        
+        return Header {
             Div {
-                Link(context.site.name, url: "/")
-                    .class("font-extrabold text-4xl")
-                Navigation {
-                    List(context.site.pages) { navigationItem in
-                        Link(navigationItem.title, url: navigationItem.link)
-                            .class(navigationItem == selectedItem ? "selected" : "")
-                            .class("hover:underline underline-offset-4")
+                if let profilePath = profilePath {
+                    Image(url: profilePath, description: "Profile icon")
+                        .class("w-[60px] h-[60px] rounded-full")
+                }
+                Div {
+                    Link(context.site.name, url: "/")
+                        .class("font-extrabold text-4xl")
+                    Navigation {
+                        List(context.site.pages) { navigationItem in
+                            Link(navigationItem.title, url: navigationItem.link)
+                                .class(navigationItem == selectedItem ? "selected" : "")
+                                .class("hover:underline underline-offset-4")
+                        }
+                        .class("flex flex-wrap gap-4")
                     }
-                    .class("flex flex-wrap gap-4")
                 }
             }
             .class("my-16")
+            .class(profilePath == nil ? "" : "flex flex-col items-center gap-2 ssm:flex-row")
         }
         .class("text-zinc-900 dark:text-zinc-50")
     }
