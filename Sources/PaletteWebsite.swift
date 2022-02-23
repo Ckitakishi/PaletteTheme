@@ -5,6 +5,7 @@
 //  Created by Yuhan Chen on 2022/02/12.
 //
 
+import Foundation
 import Publish
 import Plot
 
@@ -19,8 +20,8 @@ public protocol PaletteCustomizable {
     var socialItems: [SocialItem] { get }
     /// The path to profile icon.
     var profileIconPath: URLRepresentable? { get }
-    /// The copyright of website.
-    var copyright: String { get }
+    /// The copyright information of website.
+    var copyright: Copyright { get }
     /// The comment system used on website, currently only giscus is supported.
     var commentSystem: CommentSystem? { get }
 }
@@ -65,6 +66,31 @@ public struct PalettePage: Equatable {
     
     public static func == (lhs: PalettePage, rhs: PalettePage) -> Bool {
         lhs.id == rhs.id
+    }
+}
+
+/// A type used to manage copyright information.
+public struct Copyright {
+    /// The person who has the copyright of this site.
+    let owner: String
+    /// The copyright is valid starts from this year.
+    let startYear: String?
+    /// The copyright is valid until the end of the year, generally it's this year.
+    let endYear: String?
+    
+    var fomattedString: String {
+        let separator = (startYear != nil && endYear != nil) ? "-" : ""
+        return "Copyright © \(startYear.orEmpty)\(separator)\(endYear.orEmpty) \(owner)"
+    }
+    
+    public init(
+        owner: String,
+        startYear: String?,
+        endYear: String? = "\(Calendar.current.component(.year, from: Date()))"
+    ) {
+        self.owner = owner
+        self.startYear = startYear
+        self.endYear = endYear
     }
 }
 

@@ -5,7 +5,6 @@
 //  Created by Yuhan Chen on 2022/02/06.
 //
 
-import Foundation
 import Plot
 import Publish
 
@@ -15,7 +14,7 @@ struct SiteFooter<Site: PaletteWebsite>: Component {
     var body: Component {
         Footer {
             Paragraph {
-                Text("Copyright © 2014-\(Calendar.current.component(.year, from: Date())) \(context.site.copyright)")
+                Text(context.site.copyright.fomattedString)
             }
             .class("text-center mt-16")
             
