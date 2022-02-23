@@ -1043,6 +1043,10 @@ a {
   margin-bottom: 0.25rem;
 }
 
+.mt-20 {
+  margin-top: 5rem;
+}
+
 .mt-16 {
   margin-top: 4rem;
 }
@@ -1320,6 +1324,11 @@ svg {
 
 .hashtag::before {
   content: "#"
+}
+
+.header-title::before, 
+.header-title::after {
+  content: "\"";
 }
 
 /* Code: Syntax Highlight */

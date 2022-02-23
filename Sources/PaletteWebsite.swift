@@ -21,6 +21,8 @@ public protocol PaletteCustomizable {
     var profileIconPath: URLRepresentable? { get }
     /// The copyright of website.
     var copyright: String { get }
+    /// The comment system used on website, currently only giscus is supported.
+    var commentSystem: CommentSystem? { get }
 }
 
 public extension PaletteCustomizable {
@@ -63,5 +65,18 @@ public struct PalettePage: Equatable {
     
     public static func == (lhs: PalettePage, rhs: PalettePage) -> Bool {
         lhs.id == rhs.id
+    }
+}
+
+/// A enum represents the comments system.
+public enum CommentSystem {
+    case giscus(script: String)
+    
+    /// The related class name of comments system.
+    public var className: String? {
+        switch self {
+        case .giscus:
+            return "giscus"
+        }
     }
 }

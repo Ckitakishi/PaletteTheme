@@ -76,6 +76,11 @@ svg {
     content: "#"
 }
 
+.header-title::before, 
+.header-title::after {
+    content: "\"";
+}
+
 /* Code: Syntax Highlight */
 
 code {

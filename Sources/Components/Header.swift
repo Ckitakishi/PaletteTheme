@@ -23,7 +23,7 @@ struct SiteHeader<Site: PaletteWebsite>: Component {
                 }
                 Div {
                     Link(context.site.name, url: "/")
-                        .class("font-extrabold text-4xl")
+                        .class("header-title font-extrabold text-4xl")
                     Navigation {
                         List(context.site.pages) { navigationItem in
                             Link(navigationItem.title, url: navigationItem.link)
@@ -49,7 +49,7 @@ struct FlatHeader<Site: PaletteWebsite>: Component {
         Header {
             Div {
                 Link(context.site.name, url: "/")
-                    .class("font-extrabold text-3xl")
+                    .class("header-title font-extrabold text-3xl")
                 Navigation {
                     List(context.site.pages) { navigationItem in
                         Link(navigationItem.title, url: navigationItem.link)

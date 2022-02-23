@@ -106,11 +106,25 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             }
                             .class("prose prose-zinc min-w-full")
                             .class("dark:prose-invert")
+                            
+                            // Comments
+                            Div().class({
+                                guard let commentClass = context.site.commentSystem?.className else { return "" }
+                                return "\(commentClass) mt-20"
+                            }())
                         }
                         .class("mx-4")
                         SiteFooter(context: context)
                     }
-                }
+                },
+                .raw({
+                    // Comments
+                    guard let system = context.site.commentSystem else { return "" }
+                    switch system {
+                    case .giscus(let script):
+                        return script
+                    }
+                }())
             )
         )
     }
