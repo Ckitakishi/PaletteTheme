@@ -93,7 +93,6 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
             .lang(context.site.language),
             .head(for: item, on: context.site),
             .body(
-                .class("item-page"),
                 .components {
                     PageContainer {
                         RibbonView()
@@ -133,17 +132,37 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
-            .body {
-                PageContainer {
-                    RibbonView()
-                    FlatHeader(context: context, selectedItem: nil)
-                    CenterContainer {
-                        Div(page.body)
+            .body(
+                .components {
+                    PageContainer {
+                        RibbonView()
+                        FlatHeader(context: context, selectedItem: nil)
+                        CenterContainer {
+                            Article {
+                                Div(page.body).class("content")
+                            }
+                            .class("prose prose-zinc min-w-full")
+                            .class("dark:prose-invert")
+                            
+                            // Comments
+                            Div().class({
+                                guard let commentClass = context.site.commentSystem?.className else { return "" }
+                                return "\(commentClass) mt-20"
+                            }())
+                        }
+                        .class("mx-4")
+                        SiteFooter(context: context)
                     }
-                    .class("mx-4")
-                    SiteFooter(context: context)
-                }
-            }
+                },
+                .raw({
+                    // Comments
+                    guard let system = context.site.commentSystem else { return "" }
+                    switch system {
+                    case .giscus(let script):
+                        return script
+                    }
+                }())
+            )
         )
     }
 
