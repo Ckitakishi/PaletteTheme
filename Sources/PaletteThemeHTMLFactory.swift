@@ -12,7 +12,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: index, on: context.site),
+            .head(for: index, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -67,7 +67,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
         
         return HTML(
             .lang(context.site.language),
-            .head(for: section, on: context.site),
+            .head(for: section, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -91,7 +91,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: item, on: context.site),
+            .head(for: item, on: context.site, customNodes: context.site.headCustomNodes),
             .body(
                 .components {
                     PageContainer {
@@ -131,7 +131,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
             .body(
                 .components {
                     PageContainer {
@@ -169,7 +169,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -194,7 +194,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeTagDetailsHTML(for page: TagDetailsPage,  context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()

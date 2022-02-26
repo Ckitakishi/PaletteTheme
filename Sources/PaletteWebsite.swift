@@ -24,8 +24,11 @@ public protocol PaletteCustomizable {
     var copyright: Copyright { get }
     /// The comment system used on website, currently only giscus is supported.
     var commentSystem: CommentSystem? { get }
+    /// The tracking ID of Google Analytics
+    var googleTrackingID: String? { get }
 }
 
+/// Default implementation
 public extension PaletteCustomizable {
     var profileIconPath: URLRepresentable? { nil }
     var socialItems: [SocialItem] { [] }
