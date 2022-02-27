@@ -14,6 +14,8 @@ public typealias PaletteWebsite = Website & PaletteCustomizable
 
 /// Protocol that defines all customisable configurations for Palette theme.
 public protocol PaletteCustomizable {
+    /// The self-introduction that will be displayed on the home page. Support Markdown syntax.
+    var aboutMe: String { get }
     /// The `PalettePage`s that the website will include.
     var pages: [PalettePage] { get }
     /// The social items will be shown on website.

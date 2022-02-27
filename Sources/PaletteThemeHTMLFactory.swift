@@ -27,7 +27,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                                 H2("About")
                                     .class("top-h2")
                                 Article {
-                                    Div(Markdown(context.site.description)).class("content")
+                                    Div(Markdown(context.site.aboutMe)).class("content")
                                 }
                                 .class("prose prose-zinc min-w-full")
                                 .class("dark:prose-invert")

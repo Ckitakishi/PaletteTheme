@@ -58,8 +58,12 @@ html, body {
     background-color: #fafafa;
 }
 
-a, p {
+a {
     word-break: break-all;
+} 
+
+p {
+    word-break: break-word;
 } 
 
 hr {
