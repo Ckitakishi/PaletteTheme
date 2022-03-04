@@ -1043,12 +1043,12 @@ a {
   margin-bottom: 0.25rem;
 }
 
-.mt-20 {
-  margin-top: 5rem;
-}
-
 .mt-16 {
   margin-top: 4rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .mt-1 {
@@ -1105,6 +1105,10 @@ a {
 
 .w-32 {
   width: 8rem;
+}
+
+.w-5\/12 {
+  width: 41.666667%;
 }
 
 .w-8 {
@@ -1172,6 +1176,10 @@ a {
   --tw-space-y-reverse: 0;
   margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(4rem * var(--tw-space-y-reverse));
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-hidden {

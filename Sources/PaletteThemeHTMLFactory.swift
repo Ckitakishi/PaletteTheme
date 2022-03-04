@@ -106,6 +106,10 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             .class("prose prose-zinc min-w-full")
                             .class("dark:prose-invert")
                             
+                            // Previous / Next
+                            PostNavigationBar(item: item)
+                                .class("mt-16")
+                            
                             // Comments
                             Div().class({
                                 guard let commentClass = context.site.commentSystem?.className else { return "" }

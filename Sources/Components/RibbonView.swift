@@ -17,5 +17,3 @@ struct RibbonView: Component {
         .class("grid grid-cols-8 w-full h-[8px]")
     }
 }
-
-
