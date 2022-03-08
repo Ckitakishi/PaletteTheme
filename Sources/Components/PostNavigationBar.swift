@@ -17,17 +17,19 @@ public struct PostNavigationBar<Site: PaletteWebsite>: Component {
                 Div {
                     Div("←").class("self-center")
                     UnderlineButton(title: "\(previous.title)", url: previous.pathString)
+                        .class("text-xl")
                 }
                 .class("flex gap-2 w-5/12 self-center")
             }
             if let next = item.next {
                 Div {
-                    UnderlineButton(title: "\(next.title)", url: next.pathString)
                     Div("→").class("self-center")
+                    UnderlineButton(title: "\(next.title)", url: next.pathString)
+                        .class("text-xl")
                 }
-                .class("flex gap-2 w-5/12 self-center")
+                .class("flex flex-row-reverse gap-2 w-5/12 self-center")
             }
         }
-        .class("flex justify-between")
+        .class("flex justify-between text-xl")
     }
 }
