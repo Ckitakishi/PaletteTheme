@@ -1047,6 +1047,10 @@ a {
   margin-top: 4rem;
 }
 
+.mt-20 {
+  margin-top: 5rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1103,6 +1107,10 @@ a {
   width: 8rem;
 }
 
+.w-5\/12 {
+  width: 41.666667%;
+}
+
 .w-8 {
   width: 2rem;
 }
@@ -1129,6 +1137,10 @@ a {
 
 .grid-cols-8 {
   grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
 }
 
 .flex-col {
@@ -1168,6 +1180,10 @@ a {
   --tw-space-y-reverse: 0;
   margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(4rem * var(--tw-space-y-reverse));
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-hidden {
@@ -1259,6 +1275,11 @@ a {
   line-height: 1.75rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -1304,8 +1325,12 @@ html, body {
   background-color: #fafafa;
 }
 
-a, p {
+a {
   word-break: break-all;
+}
+
+p {
+  word-break: break-word;
 }
 
 hr {
@@ -1320,6 +1345,11 @@ svg {
 
 .hashtag::before {
   content: "#"
+}
+
+.header-title::before, 
+.header-title::after {
+  content: "\"";
 }
 
 /* Code: Syntax Highlight */

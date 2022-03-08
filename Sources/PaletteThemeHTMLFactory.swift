@@ -12,7 +12,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: index, on: context.site),
+            .head(for: index, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -27,7 +27,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                                 H2("About")
                                     .class("top-h2")
                                 Article {
-                                    Div(Markdown(context.site.description)).class("content")
+                                    Div(Markdown(context.site.aboutMe)).class("content")
                                 }
                                 .class("prose prose-zinc min-w-full")
                                 .class("dark:prose-invert")
@@ -67,7 +67,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
         
         return HTML(
             .lang(context.site.language),
-            .head(for: section, on: context.site),
+            .head(for: section, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -91,9 +91,8 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: item, on: context.site),
+            .head(for: item, on: context.site, customNodes: context.site.headCustomNodes),
             .body(
-                .class("item-page"),
                 .components {
                     PageContainer {
                         RibbonView()
@@ -106,11 +105,29 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                             }
                             .class("prose prose-zinc min-w-full")
                             .class("dark:prose-invert")
+                            
+                            // Previous / Next
+                            PostNavigationBar(item: item)
+                                .class("mt-16")
+                            
+                            // Comments
+                            Div().class({
+                                guard let commentClass = context.site.commentSystem?.className else { return "" }
+                                return "\(commentClass) mt-20"
+                            }())
                         }
                         .class("mx-4")
                         SiteFooter(context: context)
                     }
-                }
+                },
+                .raw({
+                    // Comments
+                    guard let system = context.site.commentSystem else { return "" }
+                    switch system {
+                    case .giscus(let script):
+                        return script
+                    }
+                }())
             )
         )
     }
@@ -118,25 +135,45 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
-            .body {
-                PageContainer {
-                    RibbonView()
-                    FlatHeader(context: context, selectedItem: nil)
-                    CenterContainer {
-                        Div(page.body)
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
+            .body(
+                .components {
+                    PageContainer {
+                        RibbonView()
+                        FlatHeader(context: context, selectedItem: nil)
+                        CenterContainer {
+                            Article {
+                                Div(page.body).class("content")
+                            }
+                            .class("prose prose-zinc min-w-full")
+                            .class("dark:prose-invert")
+                            
+                            // Comments
+                            Div().class({
+                                guard let commentClass = context.site.commentSystem?.className else { return "" }
+                                return "\(commentClass) mt-20"
+                            }())
+                        }
+                        .class("mx-4")
+                        SiteFooter(context: context)
                     }
-                    .class("mx-4")
-                    SiteFooter(context: context)
-                }
-            }
+                },
+                .raw({
+                    // Comments
+                    guard let system = context.site.commentSystem else { return "" }
+                    switch system {
+                    case .giscus(let script):
+                        return script
+                    }
+                }())
+            )
         )
     }
 
     func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()
@@ -161,7 +198,7 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
     func makeTagDetailsHTML(for page: TagDetailsPage,  context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
-            .head(for: page, on: context.site),
+            .head(for: page, on: context.site, customNodes: context.site.headCustomNodes),
             .body {
                 PageContainer {
                     RibbonView()

@@ -23,15 +23,8 @@ struct SiteHeader<Site: PaletteWebsite>: Component {
                 }
                 Div {
                     Link(context.site.name, url: "/")
-                        .class("font-extrabold text-4xl")
-                    Navigation {
-                        List(context.site.pages) { navigationItem in
-                            Link(navigationItem.title, url: navigationItem.link)
-                                .class(navigationItem == selectedItem ? "selected" : "")
-                                .class("hover:underline underline-offset-4")
-                        }
-                        .class("flex flex-wrap gap-4")
-                    }
+                        .class("header-title font-extrabold text-4xl")
+                    NavigationBar(context: context, selectedItem: selectedItem)
                 }
             }
             .class("my-16")
@@ -49,20 +42,29 @@ struct FlatHeader<Site: PaletteWebsite>: Component {
         Header {
             Div {
                 Link(context.site.name, url: "/")
-                    .class("font-extrabold text-3xl")
-                Navigation {
-                    List(context.site.pages) { navigationItem in
-                        Link(navigationItem.title, url: navigationItem.link)
-                            .class(navigationItem == selectedItem ? "selected" : "")
-                            .class("hover:underline underline-offset-4")
-                    }
-                    .class("flex flex-wrap gap-4")
-                }
-                .class("my-auto")
+                    .class("header-title font-extrabold text-3xl")
+                NavigationBar(context: context, selectedItem: selectedItem)
+                    .class("my-auto")
             }
             .class("flex flex-wrap justify-between my-4 gap-x-16 max-w-screen-lg w-full")
         }
         .class("flex justify-center p-4")
         .class("text-zinc-900 dark:text-zinc-50")
+    }
+}
+
+private struct NavigationBar<Site: PaletteWebsite>: Component {
+    var context: PublishingContext<Site>
+    var selectedItem: PalettePage?
+
+    var body: Component {
+        Navigation {
+            List(context.site.pages) { navigationItem in
+                Link(navigationItem.title, url: navigationItem.link)
+                    .class(navigationItem == selectedItem ? "selected" : "")
+                    .class("hover:underline underline-offset-4")
+            }
+            .class("flex flex-wrap gap-4")
+        }
     }
 }
