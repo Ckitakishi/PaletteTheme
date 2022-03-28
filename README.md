@@ -33,7 +33,7 @@ PaletteTheme is distributed using the [Swift Package Manager](https://swift.org/
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/Ckitakishi/PaletteTheme.git", from: "0.2.0"),
+        .package(url: "https://github.com/Ckitakishi/PaletteTheme.git", from: "0.2.1"),
     ],
     targets: [
         .target(
