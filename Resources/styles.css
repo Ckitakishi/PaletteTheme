@@ -949,6 +949,10 @@ a {
   font-weight: 600;
 }
 
+.prose :where(p code):not(:where([class~="not-prose"] *)) {
+  color: #f92672;
+}
+
 .prose-zinc {
   --tw-prose-body: #3f3f46;
   --tw-prose-headings: #18181b;
@@ -1354,13 +1358,6 @@ svg {
 
 /* Code: Syntax Highlight */
 
-code {
-  background-color: #ededed;
-  /* bg-zinc-50 */
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
 pre code .keyword {
   color: #f92672;
 }
@@ -1398,10 +1395,6 @@ pre code .dotAccess {
 }
 
 @media (prefers-color-scheme: dark) {
-  code {
-    background-color: #3c3c3c;
-  }
-
   html, body {
     height: 100%;
     background-color: #18181b;
@@ -1436,6 +1429,10 @@ pre code .dotAccess {
 
   .dark\:prose-invert :where(pre):not(:where([class~="not-prose"] *)) {
     background-color: #2a2a2a;
+  }
+
+  .dark\:prose-invert :where(p code):not(:where([class~="not-prose"] *)) {
+    color: #e6db74;
   }
 
   .dark\:bg-zinc-800 {
