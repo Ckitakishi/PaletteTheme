@@ -37,6 +37,9 @@ module.exports = {
             code: {
               fontWeight: '400',
             },
+            'p code': {
+              color: '#f92672',
+            },
             'code::before': {
               content: '',
             },
@@ -49,6 +52,9 @@ module.exports = {
           css: {
             pre: {
               backgroundColor: '#2a2a2a',
+            },
+            'p code': {
+              color: '#e6db74',
             },
           },
         },

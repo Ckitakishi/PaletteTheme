@@ -18,10 +18,11 @@ struct ItemList<Site: PaletteWebsite>: Component {
             Article {
                 H3(Link(item.title, url: item.path.absoluteString))
                     .class("font-semibold")
-                Paragraph(Markdown(item.description))
+                Paragraph(item.description)
+                    .class("mt-2")
                     .class("text-zinc-500 dark:text-zinc-400")
                 ItemTagListWithDate(item: item, site: site)
-                    .class("mt-6")
+                    .class("mt-8")
             }
             .class("rounded-lg my-6 p-6")
             .class("bg-zinc-100 dark:bg-zinc-800")
