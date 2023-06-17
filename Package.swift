@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "PaletteTheme",
+    platforms: [.macOS(.v12)],
     products: [
         .library(
             name: "PaletteTheme",
