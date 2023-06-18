@@ -16,12 +16,12 @@ let package = Package(
         .package(
             name: "Publish",
             url: "https://github.com/johnsundell/publish.git",
-            from: "0.7.0"
+            from: "0.9.0"
         ),
         .package(
             name: "SplashPublishPlugin",
             url: "https://github.com/johnsundell/splashpublishplugin",
-            from: "0.1.0"
+            from: "0.2.0"
         ),
     ],
     targets: [
