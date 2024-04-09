@@ -34,7 +34,7 @@ let package = Package(
     ...
     platforms: [.macOS(.v12)],
     dependencies: [
-        .package(url: "https://github.com/Ckitakishi/PaletteTheme.git", from: "0.2.2"),
+        .package(url: "https://github.com/Ckitakishi/PaletteTheme.git", from: "0.2.3"),
     ],
     targets: [
         .target(
