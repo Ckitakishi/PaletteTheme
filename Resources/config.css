@@ -1,131 +1,140 @@
-@tailwind base;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "./tailwind.config.js";
 
 @layer base {
-    body {
-        @apply font-sans;
-    }
+  body {
+    @apply font-sans;
+  }
 
-    code {
-        @apply font-mono;
-    }
-    
-    h1 {
-        @apply text-3xl;
-    }
+  code {
+    @apply font-mono;
+  }
 
-    h2 {
-        @apply text-2xl;
-    }
+  h1 {
+    @apply text-3xl;
+  }
 
-    h3 {
-        @apply text-xl;
-    }
+  h2 {
+    @apply text-2xl;
+  }
 
-    h4 {
-        @apply text-lg;
-    }
+  h3 {
+    @apply text-xl;
+  }
 
-    h5 {
-        @apply text-base;
-    }
+  h4 {
+    @apply text-lg;
+  }
 
-    h6 {
-        @apply text-sm;
-    }
-    
-    a {
-        @apply no-underline;
-    }
-    
-    .link-underline {
-        @apply underline underline-offset-4;
-    }
-    
-    .selected {
-        @apply link-underline;
-    }
-    
-    .top-h2 {
-        @apply my-4 font-bold;
-    }
+  h5 {
+    @apply text-base;
+  }
+
+  h6 {
+    @apply text-sm;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  .link-underline {
+    @apply underline underline-offset-4;
+  }
+
+  .selected {
+    @apply underline underline-offset-4;
+  }
+
+  .top-h2 {
+    @apply my-4 font-bold;
+  }
+
+  code::before,
+  code::after {
+    content: "";
+  }
 }
 
-@tailwind components;
-@tailwind utilities;
-
-html, body {
-    height: 100%;
-    background-color: #fafafa;
+html,
+body {
+  height          : 100%;
+  background-color: #fafafa;
 }
 
 a {
-    word-break: break-all;
-} 
+  word-break: break-all;
+}
 
 p {
-    word-break: break-word;
-} 
+  word-break: break-word;
+}
 
 hr {
-    border: 0.5px;
-    border-style: dashed dotted;
-    opacity: 0.8;
+  border      : 1px;
+  border-color: var(--tw-prose-hr);
+  border-style: dashed dotted;
+  opacity     : 0.8;
 }
 
 svg {
-    fill: currentColor;
+  fill: currentColor;
 }
 
 .hashtag::before {
-    content: "#"
+  content: "#"
 }
 
-.header-title::before, 
+.header-title::before,
 .header-title::after {
-    content: "\"";
+  content: "\"";
 }
 
 /* Code: Syntax Highlight */
 
 pre code .keyword {
-    color: #f92672;
+  color: #f92672;
 }
 
 pre code .type {
-    color: #a6e22e;
+  color: #a6e22e;
 }
 
 pre code .call {
-    color: #fd971f;
+  color: #fd971f;
 }
 
 pre code .property {
-    color: #66d9ef;
+  color: #66d9ef;
 }
 
 pre code .number {
-    color: #ae81ff;
+  color: #ae81ff;
 }
 
 pre code .string {
-    color: #e6db74;
+  color: #e6db74;
 }
 
 pre code .comment {
-    color: #75715e;
+  color: #75715e;
 }
 
 pre code .preprocessing {
-    color: #ae81ff;
+  color: #ae81ff;
 }
 
 pre code .dotAccess {
-    color: #5dd8ff;
+  color: #5dd8ff;
 }
 
 @media (prefers-color-scheme: dark) {
-    html, body {
-        height: 100%;
-        background-color: #18181b; /* bg-zinc-900 */
-    }
+
+  html,
+  body {
+    height          : 100%;
+    background-color: #18181b;
+    /* bg-zinc-900 */
+  }
 }
