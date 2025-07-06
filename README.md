@@ -21,7 +21,7 @@ A [Publish](https://github.com/johnsundell/publish) theme. [ckitakishi.com](http
 
 ## Requirements
 
-Swift version 5.5 (or later)
+Swift version 6.0 (or later)
 
 ## Quick start
 
@@ -32,14 +32,24 @@ PaletteTheme is distributed using the [Swift Package Manager](https://swift.org/
 ```swift
 let package = Package(
     ...
-    platforms: [.macOS(.v12)],
+    platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/Ckitakishi/PaletteTheme.git", from: "0.2.3"),
+        .package(
+            url: "https://github.com/johnsundell/publish.git", 
+            from: "0.9.0"
+        ),
+        .package(
+            url: "https://github.com/Ckitakishi/PaletteTheme.git", 
+            from: "0.3.0"
+        ),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "YourBlog",
-            dependencies: ["PaletteTheme"]
+            dependencies: [
+                .product(name: "Publish", package: "publish"),
+                .product(name: "PaletteTheme", package: "paletteTheme"),
+            ]
         )
     ]
     ...
@@ -186,6 +196,18 @@ try YourBlog().publish(using: [
     ...
     .addMarkdownFiles(),
     .installPlugin(.orderedPosts()),
+    ...
+])
+```
+
+### CopyFolderWorkaround
+
+In the latest macOS versions, `copyItem(at:to:)` cannot copy folders correctly without a trailing slash. Becuase currently the `Publish` library is not actively maintained, this workaround can be used to ensure that subfolders in Resources folder are copied correctly.
+
+```swift
+try YourBlog().publish(using: [
+    ...
+    .installPlugin(.copyResourcesWorkaround()),
     ...
 ])
 ```
