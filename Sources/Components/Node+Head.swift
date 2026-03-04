@@ -64,6 +64,7 @@ extension Node where Context == HTML.DocumentContext {
                 let url = site.url(for: path)
                 return .socialImageLink(url)
             }),
+            .script(.src("/copy-code.js")),
             .forEach(customNodes) { $0 }
         )
     }
