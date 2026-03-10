@@ -13,21 +13,26 @@ public struct PostNavigationBar<Site: PaletteWebsite>: Component {
     
     public var body: Component {
         Div {
-            if let previous = item.previous {
-                Div {
-                    Div("←").class("self-center")
-                    UnderlineButton(title: "\(previous.title)", url: previous.pathString)
-                        .class("text-xl")
-                }
-                .class("flex gap-2 w-5/12 self-center")
-            }
             if let next = item.next {
                 Div {
-                    Div("→").class("self-center")
+                    Div("←").class("self-center")
                     UnderlineButton(title: "\(next.title)", url: next.pathString)
                         .class("text-xl")
                 }
+                .class("flex gap-2 w-5/12 self-center")
+            } else {
+                Div().class("w-5/12")
+            }
+            
+            if let previous = item.previous {
+                Div {
+                    Div("→").class("self-center")
+                    UnderlineButton(title: "\(previous.title)", url: previous.pathString)
+                        .class("text-xl")
+                }
                 .class("flex flex-row-reverse gap-2 w-5/12 self-center")
+            } else {
+                Div().class("w-5/12")
             }
         }
         .class("flex justify-between text-xl")
