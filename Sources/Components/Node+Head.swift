@@ -65,6 +65,7 @@ extension Node where Context == HTML.DocumentContext {
                 return .socialImageLink(url)
             }),
             .script(.src("/copy-code.js")),
+            .script(.src("/toc.js")),
             .forEach(customNodes) { $0 }
         )
     }

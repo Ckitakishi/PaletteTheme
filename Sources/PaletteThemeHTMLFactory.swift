@@ -98,8 +98,16 @@ struct PaletteThemeHTMLFactory<Site: PaletteWebsite>: HTMLFactory {
                         RibbonView()
                         FlatHeader(context: context, selectedItem: nil)
                         CenterContainer {
-                            ItemTagListWithDate(item: item, site: context.site)
-                                .class("mb-1")
+                            Div {
+                                ItemTagListWithDate(item: item, site: context.site)
+                            }
+                            .class("article-meta mb-1")
+
+                            // Table of Contents container (Conditional)
+                            if context.site.shouldShowTOC(for: item) {
+                                Div().id("toc-container")
+                            }
+
                             Article {
                                 Div(item.content.body).class("content")
                             }

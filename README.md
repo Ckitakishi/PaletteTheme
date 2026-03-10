@@ -4,6 +4,7 @@ A [Publish](https://github.com/johnsundell/publish) theme. [ckitakishi.com](http
 ## Features
 - Simple and fast
 - Mobile friendly
+- Table of Contents (TOC)
 - Support both Light/Dark mode
 - Customisable & Extendable
 - Archive articles by year
@@ -183,6 +184,26 @@ The copyright is shown in the footer. Check the defination of `Copyright` for mo
 var copyright: Copyright  {
     Copyright(owner: "Author", startYear: "2022")
 }
+```
+
+### Table of Contents (TOC)
+
+Interactive and responsive TOC is enabled by default.
+
+To hide TOC for a specific post, add `hideTOC` to `ItemMetadata`:
+
+```swift
+struct ItemMetadata: PaletteItemMetadata {
+    var hideTOC: Bool?
+}
+```
+
+And set it in the Markdown front matter:
+
+```markdown
+---
+hideTOC: true
+---
 ```
 
 ## Using Plugins

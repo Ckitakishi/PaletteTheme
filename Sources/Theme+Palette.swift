@@ -14,7 +14,8 @@ public extension Theme where Site: PaletteWebsite {
             htmlFactory: PaletteThemeHTMLFactory(),
             resourcePaths: [
                 "Resources/styles.css",
-                "Resources/copy-code.js"
+                "Resources/copy-code.js",
+                "Resources/toc.js"
             ]
         )
     }
