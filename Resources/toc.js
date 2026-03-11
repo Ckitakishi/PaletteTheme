@@ -106,6 +106,10 @@
             }
 
             /* --- 3. Desktop Specific Styles --- */
+            @media (min-width: 1366px) and (max-height: 400px) {
+                #toc-container { display: none; }
+            }
+
             @media (min-width: 1366px) {
                 #toc-container {
                     position: fixed;
@@ -240,17 +244,15 @@
             if (window.innerWidth >= 1366) {
                 const meta = document.querySelector('.article-meta');
                 if (meta) {
-                    const metaRect = meta.getBoundingClientRect();
-                    const headerHeight = 80; // Approximate header height
-
-                    if (metaRect.top < headerHeight) {
-                        container.style.top = `${headerHeight}px`;
-                    } else {
-                        container.style.top = `${metaRect.top}px`;
-                    }
+                    const metaDocTop = meta.getBoundingClientRect().top + window.scrollY;
+                    const headerHeight = 80;
+                    const topValue = Math.max(headerHeight, metaDocTop);
+                    container.style.top = `${topValue}px`;
+                    container.style.maxHeight = `calc(100vh - ${topValue}px - ${topValue}px)`;
                 }
             } else {
-                container.style.top = ''; 
+                container.style.top = '';
+                container.style.maxHeight = '';
             }
         };
 
@@ -266,7 +268,8 @@
 
             let activeIndex = -1;
             for (let i = 0; i < tocItems.length; i++) {
-                if (tocItems[i].heading.offsetTop <= scrollPos + headerOffset) {
+                const headingDocTop = tocItems[i].heading.getBoundingClientRect().top + window.scrollY;
+                if (headingDocTop <= scrollPos + headerOffset) {
                     activeIndex = i;
                 } else {
                     break;
@@ -276,6 +279,15 @@
             tocItems.forEach((item, index) => {
                 if (index === activeIndex) {
                     item.tocItem.classList.add('active');
+                    if (window.innerWidth >= 1366) {
+                        const itemTop = item.tocItem.offsetTop;
+                        const itemBottom = itemTop + item.tocItem.offsetHeight;
+                        if (itemTop < container.scrollTop) {
+                            container.scrollTop = itemTop;
+                        } else if (itemBottom > container.scrollTop + container.clientHeight) {
+                            container.scrollTop = itemBottom - container.clientHeight;
+                        }
+                    }
                 } else {
                     item.tocItem.classList.remove('active');
                 }
