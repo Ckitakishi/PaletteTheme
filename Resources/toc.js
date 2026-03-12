@@ -26,15 +26,15 @@
                 --header-height: 80px; 
             }
 
-            /* --- 1. Global Base Styles --- */
-            h2, h3 {
-                scroll-margin-top: calc(var(--header-height) + 1.5rem);
-            }
-
             #toc-container {
                 margin: 2rem 0;
                 padding: 1rem 0;
                 transition: opacity 0.3s ease;
+            }
+
+            /* --- 1. Global Base Styles --- */
+            h2, h3 {
+                scroll-margin-top: 16px;
             }
 
             #toc-container.hidden { display: none; }
