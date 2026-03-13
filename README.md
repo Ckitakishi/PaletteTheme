@@ -41,7 +41,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/Ckitakishi/PaletteTheme.git", 
-            from: "0.3.0"
+            from: "0.4.0"
         ),
     ],
     targets: [
