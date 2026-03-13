@@ -1,9 +1,12 @@
 {
   "devDependencies": {
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.2.1"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.11",
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/cli": "^4.2.1",
+    "@tailwindcss/typography": "^0.5.19"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

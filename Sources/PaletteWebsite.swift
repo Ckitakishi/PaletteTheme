@@ -10,10 +10,10 @@ import Publish
 import Plot
 
 /// Conform to these protocols makes you can customize many additional configurations.
-public typealias PaletteWebsite = Website & PaletteCustomizable
+public typealias PaletteWebsite = PaletteCustomizable
 
 /// Protocol that defines all customisable configurations for Palette theme.
-public protocol PaletteCustomizable {
+public protocol PaletteCustomizable: Website {
     /// The self-introduction that will be displayed on the home page. Support Markdown syntax.
     var aboutMe: String { get }
     /// The `PalettePage`s that the website will include.
@@ -34,6 +34,28 @@ public protocol PaletteCustomizable {
 public extension PaletteCustomizable {
     var profileIconPath: URLRepresentable? { nil }
     var socialItems: [SocialItem] { [] }
+
+    /// Default implementation: show TOC by default.
+    func shouldShowTOC(for item: Item<Self>) -> Bool {
+        return true
+    }
+}
+
+/// When `ItemMetadata` conforms to `PaletteItemMetadata`, automatically respects `hideTOC`.
+public extension PaletteCustomizable where ItemMetadata: PaletteItemMetadata {
+    func shouldShowTOC(for item: Item<Self>) -> Bool {
+        item.metadata.hideTOC != true
+    }
+}
+
+/// Metadata keys supported by the Palette theme.
+/// Make your site's `ItemMetadata` conform to this protocol to use Palette features.
+public protocol PaletteItemMetadata: WebsiteItemMetadata {
+    var hideTOC: Bool? { get }
+}
+
+public extension PaletteItemMetadata {
+    var hideTOC: Bool? { nil }
 }
 
 /// Type used to represent a Palette section.
