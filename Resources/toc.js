@@ -23,7 +23,6 @@
                 --toc-zinc-500: #71717a;
                 --toc-zinc-800: #27272a;
                 --toc-zinc-900: #18181b;
-                --header-height: 80px; 
             }
 
             #toc-container {
@@ -48,7 +47,10 @@
                 text-transform: uppercase;
                 letter-spacing: 0.15em;
                 color: var(--toc-zinc-400);
-                margin: 0; 
+                margin: 0;
+                padding: 0;
+                background: none;
+                border: none;
                 user-select: none;
             }
 
@@ -177,7 +179,9 @@
                 }
             }
 
-            html { scroll-behavior: smooth; }
+            @media (prefers-reduced-motion: no-preference) {
+                html { scroll-behavior: smooth; }
+            }
         `;
         document.head.appendChild(style);
     };
@@ -204,9 +208,10 @@
         injectTOCStyles();
         container.innerHTML = '';
 
-        const title = document.createElement('div');
+        const title = document.createElement('button');
         title.className = 'toc-title';
         title.innerText = 'Contents';
+        title.setAttribute('aria-expanded', 'false');
         container.appendChild(title);
 
         const list = document.createElement('ul');
@@ -214,9 +219,18 @@
 
         const tocItems = [];
 
+        const usedIds = new Set(headings.filter(h => h.id).map(h => h.id));
+
         headings.forEach((heading) => {
             if (!heading.id) {
-                heading.id = generateId(heading.innerText);
+                let baseId = generateId(heading.innerText) || 'section';
+                let uniqueId = baseId;
+                let counter = 2;
+                while (usedIds.has(uniqueId)) {
+                    uniqueId = `${baseId}-${counter++}`;
+                }
+                heading.id = uniqueId;
+                usedIds.add(uniqueId);
             }
 
             const item = document.createElement('li');
@@ -248,7 +262,7 @@
                     const headerHeight = 80;
                     const topValue = Math.max(headerHeight, metaDocTop);
                     container.style.top = `${topValue}px`;
-                    container.style.maxHeight = `calc(100vh - ${topValue}px - ${topValue}px)`;
+                    container.style.maxHeight = `calc(100vh - ${topValue}px - 48px)`;
                 }
             } else {
                 container.style.top = '';
@@ -258,7 +272,8 @@
 
         title.addEventListener('click', () => {
             if (window.innerWidth < 1366) {
-                container.classList.toggle('expanded');
+                const expanded = container.classList.toggle('expanded');
+                title.setAttribute('aria-expanded', String(expanded));
             }
         });
 
@@ -294,7 +309,16 @@
             });
         };
 
-        window.addEventListener('scroll', updateActiveState);
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateActiveState();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
         window.addEventListener('resize', () => {
             updateActiveState();
             alignTOCToContent();

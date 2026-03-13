@@ -35,7 +35,8 @@
                 user-select: none;
                 -webkit-user-select: none;
             }
-            .code-block-container:hover .copy-code-button {
+            .code-block-container:hover .copy-code-button,
+            .code-block-container:focus-within .copy-code-button {
                 opacity: 1;
             }
             .copy-code-button:hover {
